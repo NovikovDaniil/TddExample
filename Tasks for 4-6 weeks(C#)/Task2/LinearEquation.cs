@@ -9,32 +9,34 @@ namespace Task2
 {
     public class LinearEquation
     {
-        private List<double> coefficients;//free member is the last item on the list
+        private List<double> coefficients=new List<double>();//free member is the last item on the list
 
         public LinearEquation(double[] coeff)
         {
-            coefficients = new List<double>(coeff);
+            coefficients = coeff.ToList();
         }
 
         public LinearEquation(List<double> coeff)
         {
-            coefficients = new List<double>(coeff);
+            coefficients = coeff.ToList();
         }
 
         public LinearEquation(string _coeff)
         {
             string[] coeff = Regex.Split(_coeff, @"[^\d.-]");
-            coefficients = new List<double>();
             for (int i = 0; i < coeff.Length; i++)
             {
-                coeff[i] = coeff[i].Replace('.', ',');// since there may be real numbers (and they
-                                                      //are perceived via double.Parse only with a comma), then replace the point to a comma
-                coefficients.Add(double.Parse(coeff[i]));
+                if (coeff[i] != "")
+                {
+                    coeff[i] = coeff[i].Replace('.', ',');// since there may be real numbers (and they
+                                                          //are perceived via double.Parse only with a comma), then replace the point to a comma
+                    coefficients.Add(double.Parse(coeff[i]));
+                }
             }
         }
         public LinearEquation(IEnumerable<double> coeff)
         {
-            coefficients = new List<double>(coeff);
+            coefficients = coeff.ToList();
         }
 
         public LinearEquation(int n)
@@ -56,7 +58,7 @@ namespace Task2
         {
             Random rand = new Random();
             for (int i = 0; i < Size; i++)
-                coefficients[i] = rand.NextDouble() * 10;
+                coefficients[i] = rand.Next(35) / 10;
         }
 
         public void SameInitialization(double value)
@@ -143,6 +145,17 @@ namespace Task2
             for (int i = 0; i < a.Size - 1; i++)
                 if (a[i] != 0) return true;
             return (a[a.Size - 1] != 0) ? false : true;
+        }
+
+        public bool IsNull()
+        {
+            for (int i = 0; i < Size; i++)
+                if (this[i] != 0) return false;
+            return true;
+        }
+        public void CopyTo(LinearEquation b)
+        {
+            b.coefficients = coefficients.ToList();
         }
         public override bool Equals(object obj)
         {

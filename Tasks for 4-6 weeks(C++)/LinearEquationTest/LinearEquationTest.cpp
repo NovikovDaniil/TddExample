@@ -103,7 +103,7 @@ namespace LinearEquationTest
 				LinearEquation a("0,2,0,-4");
 				double tmp = a[-1];
 			};
-			Assert::ExpectException<std::invalid_argument>(func);
+			Assert::ExpectException<std::out_of_range>(func);
 		}
 		TEST_METHOD(FailWithWrongIndexing1)
 		{
@@ -112,7 +112,7 @@ namespace LinearEquationTest
 				LinearEquation a("0,2,0,-4");
 				double tmp = a[15];
 			};
-			Assert::ExpectException<std::invalid_argument>(func);
+			Assert::ExpectException<std::out_of_range>(func);
 		}
 	};
 }

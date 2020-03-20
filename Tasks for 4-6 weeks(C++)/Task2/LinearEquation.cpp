@@ -38,7 +38,7 @@ LinearEquation::LinearEquation(int n)
 
 void LinearEquation::random_initialization()
 {
-	srand(time(NULL));
+
 	for_each(coefficients.begin(), coefficients.end(), [](double& t) {t = (rand() % 100) / 10.0; });
 }
 
@@ -50,7 +50,7 @@ double& LinearEquation::operator[](int index)
 {
 	if (index >= 0 && index < coefficients.size())
 		return coefficients.at(index);
-	else throw std::invalid_argument("Invaild argument");
+	else throw std::out_of_range("Out of range!");
 }
 LinearEquation LinearEquation::operator*(const double& k)
 {
@@ -58,6 +58,12 @@ LinearEquation LinearEquation::operator*(const double& k)
 	for_each(res.begin(), res.end(), [k](double& t) {t *= k; });
 	return LinearEquation(res);
 }
+//LinearEquation operator*(LinearEquation& a,const double k)
+//{
+//	vector<double> res = a.coefficients;
+//	for_each(res.begin(), res.end(), [k](double& t) {t *= k; });
+//	return LinearEquation(res);
+//}
 LinearEquation operator*(double k, LinearEquation& a)
 {
 	return a * k;
@@ -108,6 +114,12 @@ LinearEquation::operator list<double>()
 	list<double> coeff;
 	copy(coefficients.begin(), coefficients.end(), back_inserter(coeff));
 	return coeff;
+}
+bool LinearEquation::isNull()
+{
+	for (int i = 0; i < size(); i++)
+		if (coefficients[i] != 0) return false;
+	return true;
 }
 bool operator==(LinearEquation& a, LinearEquation& b)
 {

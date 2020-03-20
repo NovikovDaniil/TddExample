@@ -14,10 +14,11 @@ public:
 	LinearEquation(list<double>);
 	LinearEquation(vector<double>);
 	LinearEquation(int n);
-	~LinearEquation() {  };
+	~LinearEquation() { vector<double>().swap(coefficients); };
 	int size() { return coefficients.size(); }
 	void random_initialization();
 	void same_initialization(double);
+	bool isNull();
 	double& operator[] (int index);
 	LinearEquation operator+(LinearEquation&);
 	LinearEquation operator-(LinearEquation&);

@@ -46,7 +46,7 @@ namespace NeuralNetworkTest
 		{
 			auto func = []() {
 				double* arr = new double[4]{ 1, 2, 3, 4 };
-				Indexer(arr, 4, -1, 3);
+				Indexer tmp(arr, 4, -1, 3);
 			};
 			Assert::ExpectException<std::invalid_argument>(func);
 		}
@@ -54,7 +54,7 @@ namespace NeuralNetworkTest
 		{
 			auto func = []() {
 				double* arr = new double[4]{ 1, 2, 3, 4 };
-				Indexer(arr, 4, 1, -1);
+				Indexer tmp(arr, 4, 1, -1);
 			};
 			Assert::ExpectException<std::invalid_argument>(func);
 		}
@@ -62,7 +62,7 @@ namespace NeuralNetworkTest
 		{
 			auto func = []() {
 				double* arr = new double[4]{ 1, 2, 3, 4 };
-				Indexer(arr, 4, 1, 10);
+				Indexer tmp(arr, 4, 1, 10);
 			};
 			Assert::ExpectException<std::invalid_argument>(func);
 		}
@@ -73,7 +73,7 @@ namespace NeuralNetworkTest
 				Indexer indexer(arr, 4, 1, 2);
 				double tmp = indexer[-1];
 			};
-			Assert::ExpectException<std::invalid_argument>(func);
+			Assert::ExpectException<std::out_of_range>(func);
 		}
 		TEST_METHOD(FailWithWrongIndexing2)
 		{
@@ -82,7 +82,7 @@ namespace NeuralNetworkTest
 				Indexer indexer(arr, 4, 1, 2);
 				double tmp = indexer[10];
 			};
-			Assert::ExpectException<std::invalid_argument>(func);
+			Assert::ExpectException<std::out_of_range>(func);
 		}
 	};
 }

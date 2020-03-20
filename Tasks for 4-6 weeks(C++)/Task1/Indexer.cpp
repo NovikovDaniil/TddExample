@@ -14,7 +14,7 @@ double& Indexer::operator[](int index)
 {
 	if (CheckIndex(begin, length, index))
 		return arr[begin + index];
-	else throw std::invalid_argument("Неверный аргумент");
+	else throw std::out_of_range("Неверный аргумент");
 }
 bool Indexer::CheckArguments(int arrLength, int begin, int length)
 {

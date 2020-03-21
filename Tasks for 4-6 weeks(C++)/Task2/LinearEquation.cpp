@@ -58,12 +58,7 @@ LinearEquation LinearEquation::operator*(const double& k)
 	for_each(res.begin(), res.end(), [k](double& t) {t *= k; });
 	return LinearEquation(res);
 }
-//LinearEquation operator*(LinearEquation& a,const double k)
-//{
-//	vector<double> res = a.coefficients;
-//	for_each(res.begin(), res.end(), [k](double& t) {t *= k; });
-//	return LinearEquation(res);
-//}
+
 LinearEquation operator*(double k, LinearEquation& a)
 {
 	return a * k;

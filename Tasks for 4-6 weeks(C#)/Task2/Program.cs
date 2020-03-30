@@ -12,6 +12,7 @@ namespace Task2
         {
 
             int n = 3;
+            LinearEquation a = new LinearEquation("5.2,6.89,5");
             SystemOfLinearEquation s = new SystemOfLinearEquation(n);
             s.Add(new LinearEquation("3.0, 2.0,-4.0, 3.0"));
             s.Add(new LinearEquation("2.0, 3.0, 3.0, 15.0"));

@@ -23,7 +23,7 @@ namespace Task2
 
         public LinearEquation(string _coeff)
         {
-            string[] coeff = Regex.Split(_coeff, @"[^\d.-]");
+            string[] coeff = Regex.Split(_coeff, @"[^\d\.-]");
             for (int i = 0; i < coeff.Length; i++)
             {
                 if (coeff[i] != "")
